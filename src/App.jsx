@@ -6,10 +6,9 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import NavBar from './components/navbar';
 import HomePage from './routes/home';
 import MoviePage from './routes/movie';
-import GenrePage from './routes/genre';
 import DashboardPage from './routes/dashboard';
 import SearchPage from './routes/search';
-import ActorPage from './routes/actor';
+import CelebrityPage from './routes/celebrity';
 
 function App() {
   const [search, setsearch] = useState("")
@@ -29,11 +28,8 @@ function App() {
             <Route exact path='/movie/:id'
               element={ <MoviePage/> }
             />
-            <Route exact path='/actor/:id'
-              element={ <ActorPage/> }
-            />
-            <Route exact path='/genre/:id'
-              element={ <GenrePage/> }
+            <Route path='/celebrity/:id'
+              element={ <CelebrityPage/> }
             />
             <Route exact path='/movies/:id'
               element={ <DashboardPage/> }

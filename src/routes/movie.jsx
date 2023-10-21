@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Button, Link, Image, Chip, Card, Tooltip } from '@nextui-org/react';
 import useFetchMovie from '../hooks/useFetchMovie';
 import SpinnerDiv from '../components/spinner';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function MoviePage(){
   const navigate = useNavigate()
@@ -13,7 +13,11 @@ function MoviePage(){
 
   const [showall, setshowall] = useState(false)
 
-  //!!!SHOWALL
+  useEffect(() => {
+    if(moviedata && moviedata.title){
+      document.title = moviedata.title + " | FilmWave"
+    }
+  }, [moviedata])
 
   return(
     <section>
@@ -59,7 +63,9 @@ function MoviePage(){
                 ★{moviedata.vote_average.toFixed(1)}
               </Chip>
                 <h3 className="font-semibold px-3">{moviedata.release_date.substring(0, 4)}</h3>
-                <h3>Directed by <Link size="md"><span className="font-semibold">{moviedata.credits.crew.filter(({job})=> job ==='Director')[0].name}</span></Link></h3>
+                {moviedata.credits.crew.filter(({job})=> job ==='Director')[0] && 
+                  <h3>Directed by <Link className="cursor-pointer" onClick={() => navigate(`/celebrity/${moviedata.credits.crew.filter(({job})=> job ==='Director')[0].id}`)} size="md"><span className="font-semibold">{moviedata.credits.crew.filter(({job})=> job ==='Director')[0].name}</span></Link></h3>
+                }
               </div>
 
               {moviedata.tagline ? <h4 className="py-2 font-semibold text-xl text-center">{moviedata.tagline}</h4> : null}
@@ -93,22 +99,22 @@ function MoviePage(){
             </div>
           </div>
 
-          <section className="mb-3">
+          <section className="mb-2">
             <h3>Cast</h3>
 
               <div className="flex flex-row flex-wrap">
                 {moviedata.credits.cast.filter((item, index) => index < (showall ? 100 : 10)).map((cast) =>
-                  <Link href={`/actor/${cast.id}`} key={cast.id}>
+                  <Link href={`/celebrity/${cast.id}`} key={cast.id}>
                     <Tooltip content={cast.character}>
                       <Chip style={{margin: "2px"}} key={'cast' + cast.id}>{cast.name}</Chip>
                     </Tooltip>
                   </Link>
                 )}
-                  {!showall && <Chip onClick={() => setshowall(!showall)} style={{margin: "2px", cursor: "pointer"}}>Show All...</Chip>}
+                  {!showall && moviedata.credits.cast.length > 10  && <Chip className="cursor-pointer" onClick={() => setshowall(!showall)} style={{margin: "2px"}}>Show All...</Chip>}
               </div>
           </section>
 
-        {moviedata.recommendations.results.length !== 0 ? 
+        {moviedata.recommendations.results.length !== 0 && 
           <section className="mb-2">
             <h3>Recommended Movies</h3>
 
@@ -132,7 +138,8 @@ function MoviePage(){
                             isBlurred
                             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                             alt={movie.title}
-                            width={190}
+                            width={170}
+                            style={{ height: "246px"}}
                           />
                         </Card>
                         <p>{movie.title}</p>
@@ -142,8 +149,7 @@ function MoviePage(){
                 )}
               </div>
           </section>
-        : null}
-
+        }
         </section>
       : <SpinnerDiv/>}
     </section>

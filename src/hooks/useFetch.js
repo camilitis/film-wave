@@ -39,7 +39,7 @@ function useFetch(pagenumber, genreid){
 
     fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
       .then(response => response.json())
-      .then(response => settopratedmovies(response.results))
+      .then(response => settopratedmovies(response))
       .catch(err => console.error(err))
 
 

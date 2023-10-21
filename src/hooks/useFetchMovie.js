@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 function useFetchMovie(movieid){
   const [moviedata, setmoviedata] = useState(null)
-  const [director, setDirector] = useState(null)
 
   const options = {
     method: 'GET',

@@ -26,9 +26,6 @@ function SearchPage(){
     setpagenumber(1)
   }, [searchquery])
 
-  function handleLink(id){
-    navigate(`/movie/${id}`)
-  }
 
   return(
     <>
@@ -38,28 +35,27 @@ function SearchPage(){
         {moviesDashboard ? 
           <div className="py-2 flex flex-row flex-wrap">
             {moviesDashboard.map((movie) => (
-              <span key={movie.id}>
-                  <Link 
-                    key={movie.id}
-                    href={`/movie/${movie.id}`}
-                  >
-                  <Chip color="warning" variant="shadow" className="absolute z-40 top-0 -left-3">
-                    ★{movie.vote_average.toFixed(1)}
-                  </Chip>
-                    <div key={movie.id} className="p-2 card-container">
-                      <Card isPressable isHoverable>
-                        <Image
-                          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                          alt={movie.title}
-                          className="m-5"
-                          width={190}
-                          style={{ height: "276px"}}
-                        />
-                      </Card>
-                      <p>{movie.title}</p>
-                    </div>
-                  </Link>
-              </span>
+              <Link 
+                key={movie.id}
+                onClick={() => navigate(`/movie/${movie.id}`)}
+              >
+                <Chip color="warning" variant="shadow" className="absolute z-40 top-0 -left-3">
+                  ★{movie.vote_average.toFixed(1)}
+                </Chip>
+                  <div className="p-2 card-container">
+                    <Card isPressable isHoverable>
+                      <Image
+                        src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                        alt={movie.title}
+                        className="m-5"
+                        width={190}
+                        style={{ height: "276px"}}
+                        onClick={() => navigate(`/movie/${movie.id}`)}
+                      />
+                    </Card>
+                    <p>{movie.title}</p>
+                  </div>
+              </Link>
             ))}
 
           {searchresults.total_pages > 1 && 
