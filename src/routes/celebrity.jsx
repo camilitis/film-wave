@@ -19,6 +19,21 @@ function CelebrityPage(){
 
   const [filtereddata, setfiltereddata] = useState(null)
 
+  function joindepartments(){
+    const joined = actordata.moviecredits.cast.concat(actordata.moviecredits.crew)
+    const identicalremoved = joined.filter((item, index, self) => {
+      const isUnique = self.findIndex((obj) => obj.id === item.id) === index
+      return isUnique
+    })
+
+    return identicalremoved
+  }
+
+  useEffect(() => {
+    if(actordata && actordata.moviecredits){
+      setfiltereddata(joindepartments())
+    }
+  }, [selecteddepartment === "0", actordata])
 
   function countdepartment(type){
     const departmentCounts = {}
@@ -44,12 +59,10 @@ function CelebrityPage(){
     }
   }
 
-
   useEffect(() => {
     if(actordata && actordata.moviecredits){
       if(selecteddepartment === "0"){
-        // const filtered = actordata.filter((castMember) => castMember.character === selecteddepartment)
-        // setfiltereddata(filtered)
+        setfiltereddata(joindepartments())
       }else if(selecteddepartment === "Actor"){
         setfiltereddata(actordata.moviecredits.cast)
       }else{
@@ -61,7 +74,6 @@ function CelebrityPage(){
 
   useEffect(() => {
     if(actordata && actordata.moviecredits && actordata.actordetails){
-      console.log(actordata.moviecredits)
       document.title = actordata.actordetails.name +  " | FilmWave"
       countdepartment(actordata.moviecredits.crew)
       countdepartment(actordata.moviecredits.cast)
@@ -72,6 +84,10 @@ function CelebrityPage(){
   function handleDepartmentChange(event){
     setselecteddepartment(event.target.value)
   }
+
+  useEffect(() => {
+    setselecteddepartment("0")
+  }, [selecteddepartment === ""])
 
   return(
     <>
@@ -103,7 +119,7 @@ function CelebrityPage(){
         selectionMode="single"
         value={selecteddepartment}
         onChange={handleDepartmentChange}
-        defaultSelectedKeys={["0"]}
+        defaultSelectedKeys="0"
       >
         <SelectItem key="0" value="All" aria-label="All">
           All
@@ -119,7 +135,6 @@ function CelebrityPage(){
           </SelectItem>
         ))}
       </Select>
-
 
     {actordata && actordata.actordetails && actordata.moviecredits ? 
       <section className="flex flex-col">
@@ -142,6 +157,7 @@ function CelebrityPage(){
                     />
                   </Card>
                   <p>{movie.title}</p>
+                  <p style={{color: "grey"}}>{movie.job === undefined ? "Actor" : movie.job}</p>
                 </div>
               </Link>
             ))}

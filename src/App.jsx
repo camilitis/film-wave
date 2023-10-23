@@ -43,7 +43,7 @@ function App() {
           <hr/>
         </div>
 
-        <footer className="flex justify-center p-5">©2023 <Link href='https://camilaguerra.vercel.app/' className='ml-1'>Camila</Link>. Powered by <Link href='https://developer.themoviedb.org/docs' className='ml-1'>The Movie DB</Link>. View project on <Link href='https://camilaguerra.vercel.app/' className='ml-1'>GitHub</Link>.</footer>
+        <footer className="flex justify-center p-5">©2023 <Link href='https://camilaguerra.vercel.app/' className='ml-1'>Camila</Link>. Powered by <Link href='https://developer.themoviedb.org/docs' className='ml-1'>The Movie DB</Link>. View project on <Link href='https://github.com/camilitis/film-wave' className='ml-1'>GitHub</Link>.</footer>
       </NextThemesProvider>
     </NextUIProvider>
   )

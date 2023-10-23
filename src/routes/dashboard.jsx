@@ -18,7 +18,7 @@ function DashboardPage(){
 
   const [genreselected, setgenreselected] = useState(null)
 
-  const { upcomingmovies, nowshowingmovies, popularmovies, genreslist } = useFetch(pagenumber, genreselected)
+  const { upcomingmovies, nowshowingmovies, popularmovies, topratedmovies, genreslist } = useFetch(pagenumber, genreselected)
 
   useEffect(() => {
     if(upcomingmovies && nowshowingmovies && popularmovies){
@@ -37,6 +37,11 @@ function DashboardPage(){
         document.title = 'Popular Movies | FilmWave'
         settitle("Popular Movies")
         settotalpages(upcomingmovies.total_pages)
+      }else if(id === 'toprated'){
+        setMoviesDashboard(topratedmovies.results)
+        document.title = 'Top Rated Movies | FilmWave'
+        settitle("Top Rated Movies")
+        settotalpages(topratedmovies.total_pages)
       }
     }
   }, [id, upcomingmovies, nowshowingmovies, popularmovies])
@@ -63,12 +68,12 @@ function DashboardPage(){
                 className="max-w-xs"
                 aria-label="Genres"
                 size="sm"
-                defaultSelectedKeys={["0"]}
+                defaultSelectedKeys="0"
                 onChange={handleSelectionChange}
               >
                   <SelectItem key="0" value="All"
                   aria-label="All">
-                    <span style={{fontWeight: "600"}}>Any genre</span>
+                    <span style={{fontWeight: "600"}}>All</span>
                   </SelectItem>
 
                 {genreslist.map((genre) => (
@@ -81,6 +86,8 @@ function DashboardPage(){
             </div>
           }
         </div>
+
+        {moviesDashboard && moviesDashboard.length === 0 ? "No movies to show" : null}
 
         {moviesDashboard ? 
           <div className="py-2 flex flex-row flex-wrap">
@@ -108,7 +115,7 @@ function DashboardPage(){
               </Link>
             ))}
 
-            <Pagination total={totalpages ? totalpages : 1} initialPage={1} page={pagenumber} onChange={setpagenumber} className="flex justify-center w-full py-4 my-1"/>
+            {moviesDashboard.length === 0 ? null : <Pagination total={totalpages ? totalpages : 1} initialPage={1} page={pagenumber} onChange={setpagenumber} className="flex justify-center w-full py-4 my-1"/>}
           </div>
         : <SpinnerDiv/> }
       </section>

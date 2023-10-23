@@ -110,7 +110,7 @@ function MoviePage(){
                     </Tooltip>
                   </Link>
                 )}
-                  {!showall && moviedata.credits.cast.length > 10  && <Chip className="cursor-pointer" onClick={() => setshowall(!showall)} style={{margin: "2px"}}>Show All...</Chip>}
+                  {!showall && moviedata.credits.cast.length > 10  && <Link><Chip className="cursor-pointer" onClick={() => setshowall(!showall)} style={{margin: "2px"}}>Show All...</Chip></Link>}
               </div>
           </section>
 

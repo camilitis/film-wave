@@ -37,11 +37,6 @@ function useFetch(pagenumber, genreid){
       .then(response => setgenreslist(response.genres))
       .catch(err => console.error(err))
 
-    fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
-      .then(response => response.json())
-      .then(response => settopratedmovies(response))
-      .catch(err => console.error(err))
-
 
       if(genreid){
         fetch(`https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${pagenumber}&with_genres=${genreid}`, options)
@@ -58,6 +53,11 @@ function useFetch(pagenumber, genreid){
         .then(response => response.json())
         .then(response => setpopularmovies(response))
         .catch(err => console.error(err))
+
+        fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&${pagenumber}&with_genres=${genreid}`, options)
+        .then(response => response.json())
+        .then(response => settopratedmovies(response))
+        .catch(err => console.error(err))
       }else{
         fetch(`https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${pagenumber}`, options)
         .then(response => response.json())
@@ -72,6 +72,11 @@ function useFetch(pagenumber, genreid){
         fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${pagenumber}`, options)
         .then(response => response.json())
         .then(response => setpopularmovies(response))
+        .catch(err => console.error(err))
+
+        fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&${pagenumber}`, options)
+        .then(response => response.json())
+        .then(response => settopratedmovies(response))
         .catch(err => console.error(err))
       }
   }, [pagenumber, genreid])
