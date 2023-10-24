@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { Image, Link, Card, Button, Select, SelectItem, Chip } from '@nextui-org/react';
+import { Image, Link, Card, Button, Select, SelectItem } from '@nextui-org/react';
 import useFetchCelebrity from '../hooks/useFetchCelebrity';
 import SpinnerDiv from '../components/spinner';
 import { useEffect, useState } from 'react';

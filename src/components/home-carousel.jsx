@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Card, Image, Skeleton, CardFooter, Link, Pagination } from '@nextui-org/react';
+import { Card, Image, Skeleton, CardFooter, Link } from '@nextui-org/react';
 
 function HomeCarousel({trendingTitle, trendingInfo}){
   const [trendingPag, setTrendingPag] = useState(0)
@@ -13,20 +13,22 @@ function HomeCarousel({trendingTitle, trendingInfo}){
   })
 
   return (
-    <section className="flex">
+    <section className="flex max-[650px]:w-full">
       {trendingInfo ?
         <>
           <Link 
-            href={`/movie/${trendingInfo[trendingPag].id}`}>
+            href={`/movie/${trendingInfo[trendingPag].id}`}
+            className="max-[650px]:w-full"
+          >
             <Card
               isFooterBlurred isPressable isHoverable
               radius="lg"
-              className="mx-1 no-select"
+              className="mx-1 no-select max-[650px]:w-full"
             >
               <Image
               
                 removeWrapper
-                alt="Relaxing app background"
+                alt={trendingInfo[trendingPag].original_title}
                 className="z-0 w-full object-cover"
                 src={`https://image.tmdb.org/t/p/w500/${trendingInfo[trendingPag].backdrop_path}`}
               />

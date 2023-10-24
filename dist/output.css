@@ -752,6 +752,12 @@ video {
   margin: -0.625rem;
 }
 
+.mx-auto{
+  margin: 0px auto;
+}
+.my-auto{
+  margin: auto 0px;
+}
 .m-auto{
   margin: auto;
 }
@@ -2383,6 +2389,9 @@ video {
 
 .font-semibold {
   font-weight: 600;
+}
+.font-bold{
+  font-weight: 800;
 }
 
 .\!text-danger {

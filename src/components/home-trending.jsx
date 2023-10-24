@@ -2,18 +2,20 @@ import { Card, Image, Skeleton, CardFooter, Link } from '@nextui-org/react';
 
 function HomeTrending({trendingTitle, trendingInfo}){
   return (
-    <section className="flex">
+    <section className="flex max-[650px]:w-full">
       {trendingInfo ?
         <Link 
-          href={`/movie/${trendingInfo[0].id}`}>
+          href={`/movie/${trendingInfo[0].id}`}
+          className="max-[650px]:mb-3 max-[650px]:w-full"
+        >
           <Card
             isFooterBlurred isPressable isHoverable
             radius="lg"
-            className="mx-1 no-select"
+            className="mx-1 no-select max-[650px]:w-full"
           >
             <Image
               removeWrapper
-              alt="Relaxing app background"
+              alt={trendingInfo[0].original_title}
               className="z-0 w-full object-cover"
               src={`https://image.tmdb.org/t/p/w500/${trendingInfo[0].backdrop_path}`}
             />

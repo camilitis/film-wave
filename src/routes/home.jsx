@@ -1,7 +1,6 @@
 import { Link } from '@nextui-org/react';
 
 import useFetch from '../hooks/useFetch';
-import SpinnerDiv from '../components/spinner';
 
 import HomeTrending from '../components/home-trending';
 import HomeCarousel from '../components/home-carousel';
@@ -13,7 +12,7 @@ function HomePage() {
 
   return (
     <>
-      <section className="flex">
+      <section className="flex flex-row max-[650px]:flex-col max-[650px]:place-items-center">
         <HomeTrending
           trendingTitle={'Trending of the day'}
           trendingInfo={trendingoftheday}

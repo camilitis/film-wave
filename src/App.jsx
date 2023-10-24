@@ -19,7 +19,7 @@ function App() {
         <div className="App">
           <NavBar search={search} setsearch={setsearch}/>
 
-          <hr className="py-3"/>
+          <hr className="mb-4"/>
 
           <Routes>
             <Route exact path='/'
@@ -40,10 +40,12 @@ function App() {
             <Route path='*' element={<Navigate to="/"/>}/>
           </Routes>
 
-          <hr/>
+          <hr className="my-4"/>
         </div>
 
-        <footer className="flex justify-center p-5">©2023 <Link href='https://camilaguerra.vercel.app/' className='ml-1'>Camila</Link>. Powered by <Link href='https://developer.themoviedb.org/docs' className='ml-1'>The Movie DB</Link>. View project on <Link href='https://github.com/camilitis/film-wave' className='ml-1'>GitHub</Link>.</footer>
+        <footer className="flex justify-center text-center mb-2">
+          <p>©2023 <Link href="https://camilaguerra.vercel.app/">Camila</Link>. Powered by <Link href="https://www.themoviedb.org/">The Movie DB</Link>. View project on <Link href="https://github.com/camilitis/film-wave">GitHub</Link>.</p>
+        </footer>
       </NextThemesProvider>
     </NextUIProvider>
   )

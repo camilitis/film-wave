@@ -44,7 +44,7 @@ function DashboardPage(){
         settotalpages(topratedmovies.total_pages)
       }
     }
-  }, [id, upcomingmovies, nowshowingmovies, popularmovies])
+  }, [id, upcomingmovies, nowshowingmovies, popularmovies, topratedmovies])
 
   function handleSelectionChange(event){
     if(event.target.value === "0"){
@@ -59,7 +59,7 @@ function DashboardPage(){
     <>
       <section className="py-2">
         <div className="flex flex-row">
-          <h2 className="py-3 uppercase font-extrabold w-full">{title}</h2>
+          <h2 className="py-3 uppercase font-semibold w-full">{title}</h2>
 
           {genreslist && 
             <div className="flex w-full justify-end">
