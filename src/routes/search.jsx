@@ -34,27 +34,27 @@ function SearchPage(){
 
         {moviesDashboard ? 
           <div 
-            className="py-2 flex flex-row flex-wrap inline-flex w-full justify-center"
+            className="py-2 flex flex-row flex-wrap w-full justify-center max-[541px]:w-11/12 max-[541px]:mx-auto max-[541px]:px-6 max-[435px]:p-0"
           >
             {moviesDashboard.map((movie) => (
               <Link 
                 key={movie.id}
                 onClick={() => navigate(`/movie/${movie.id}`)}
-                className="cursor-pointer max-[650px]:w-40"
+                className="cursor-pointer max-[830px]:w-40 max-[669px]:w-32 max-[541px]:w-3/6"
               >
                 <Chip color="warning" variant="shadow" className="absolute z-40 top-0 -left-1">
                   ★{movie.vote_average.toFixed(1)}
                 </Chip>
-                  <div className="p-2 card-container">
-                    <Card isPressable isHoverable>
+                  <div className="py-2 w-[200px] h-full m-auto">
+                    <Card isPressable isHoverable className="m-auto">
                       <Image
                         src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                         alt={movie.title}
-                        className="photoclass"
+                        className="photoclass max-[830px]:w-36 max-[830px]:h-52 max-[669px]:w-24 max-[669px]:h-36 max-[541px]:h-52 max-[541px]:w-36 max-[370px]:w-24 max-[370px]:h-36"
                         onClick={() => navigate(`/movie/${movie.id}`)}
                       />
                     </Card>
-                    <p>{movie.title}</p>
+                    <p className="text-center">{movie.title}</p>
                   </div>
               </Link>
             ))}

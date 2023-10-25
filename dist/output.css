@@ -816,12 +816,20 @@ video {
   margin-bottom: 1px;
 }
 
+.ml-auto{
+  margin-left: 0;
+}
+
 .ml-1 {
   margin-left: 0.25rem;
 }
 
 .ml-2 {
   margin-left: 0.5rem;
+}
+
+.mr-0{
+  margin-right: 0px;
 }
 
 .mr-2 {
@@ -1580,6 +1588,10 @@ video {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-self-right{
+  justify-self: right;
 }
 
 .\!gap-0 {
@@ -2381,6 +2393,16 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-2xl{
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-3xl{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .font-medium {

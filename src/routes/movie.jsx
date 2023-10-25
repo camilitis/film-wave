@@ -20,10 +20,10 @@ function MoviePage(){
   }, [moviedata])
 
   return(
-    <section>
+    <>
       {moviedata ? 
-        <section className="movie-grid">
-          <div className="movie-grid-header-buttons">
+        <section>
+          <div className="flex space-around justify-around mr-0 ml-auto w-[200px]">
             <Link>
               <Button
                 size="sm"
@@ -43,7 +43,7 @@ function MoviePage(){
             </Link>
           </div>
 
-          <h2 className="movie-grid-header-title">
+          <h2 className="font-semibold text-3xl my-1">
             <span>{moviedata.title} {moviedata.original_title === moviedata.title ? '' : `(${moviedata.original_title})`}</span>
           </h2>
 
@@ -152,7 +152,7 @@ function MoviePage(){
         }
         </section>
       : <SpinnerDiv/>}
-    </section>
+    </>
   )
 }
 
