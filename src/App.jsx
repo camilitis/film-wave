@@ -41,11 +41,11 @@ function App() {
           </Routes>
 
           <hr className="my-4"/>
-        </div>
 
-        <footer className="flex justify-center text-center mb-2">
+          <footer className="flex justify-center text-center mb-2">
           <p>©2023 <Link href="https://camilaguerra.vercel.app/">Camila</Link>. Powered by <Link href="https://www.themoviedb.org/">The Movie DB</Link>. View project on <Link href="https://github.com/camilitis/film-wave">GitHub</Link>.</p>
         </footer>
+        </div>
       </NextThemesProvider>
     </NextUIProvider>
   )

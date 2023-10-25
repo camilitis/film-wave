@@ -34,13 +34,13 @@ function SearchPage(){
 
         {moviesDashboard ? 
           <div 
-            className="py-2 flex flex-row flex-wrap max-[1200px]"
+            className="py-2 flex flex-row flex-wrap inline-flex w-full justify-center"
           >
             {moviesDashboard.map((movie) => (
               <Link 
                 key={movie.id}
                 onClick={() => navigate(`/movie/${movie.id}`)}
-                className="cursor-pointer"
+                className="cursor-pointer max-[650px]:w-40"
               >
                 <Chip color="warning" variant="shadow" className="absolute z-40 top-0 -left-1">
                   ★{movie.vote_average.toFixed(1)}
@@ -50,9 +50,7 @@ function SearchPage(){
                       <Image
                         src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                         alt={movie.title}
-                        width={190}
-                        style={{ height: "270px"}}
-                        // className="w-190 h-200"
+                        className="photoclass"
                         onClick={() => navigate(`/movie/${movie.id}`)}
                       />
                     </Card>
