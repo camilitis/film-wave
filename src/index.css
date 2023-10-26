@@ -33,6 +33,11 @@
   text-shadow: 0px 2px 5px rgb(27, 25, 25);
 }
 
+.card-container{
+  width: 200px;
+  height: 100%;
+}
+
 .container-margin{
   margin: 0px 12px;
 }

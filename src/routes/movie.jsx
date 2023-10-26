@@ -23,13 +23,13 @@ function MoviePage(){
     <>
       {moviedata ? 
         <section>
-          <div className="flex space-around justify-around mr-0 ml-auto w-[200px]">
+          <div className="flex space-around justify-around mr-0 ml-auto w-[200px] max-[600px]:hidden">
             <Link>
               <Button
                 size="sm"
                 variant="bordered"
                 color="primary"
-                style={{fontWeight: "600"}}
+                className="font-semibold"
                 onPress={() => window.history.back()}
               >
                 ← Go back
@@ -37,32 +37,37 @@ function MoviePage(){
             </Link>
 
             <Link href='/'>
-              <Button variant="bordered" color="primary" size="sm" style={{fontWeight: "600"}}>
+              <Button variant="bordered" color="primary" size="sm" className="font-semibold">
                 Home
               </Button>
             </Link>
           </div>
 
-          <h2 className="font-semibold text-3xl my-1">
-            <span>{moviedata.title} {moviedata.original_title === moviedata.title ? '' : `(${moviedata.original_title})`}</span>
+          <h2 className="font-semibold text-3xl my-1 max-[600px]:flex max-[600px]:flex-col">
+            <span>{moviedata.title} </span>
+            <span>{moviedata.original_title === moviedata.title ? '' : ` (${moviedata.original_title})`}</span>
           </h2>
 
 
-          <div className="p-3 flex flex-row">
-            <div>
+          <div className="p-3 flex flex-row max-[600px]:flex-col">
+            <div className="max-[600px]:m-auto max-[600px]:mb-4">
               <Image
                 src={`https://image.tmdb.org/t/p/w500/${moviedata.poster_path}`}
                 alt={moviedata.title}
-                width={500}
+                // width={500}
+                className="w-[500px] max-[740px]:w-[300px]"
               />
             </div>
 
             <div className="flex flex-col w-full px-6">
-              <div className="flex flex-row w-full justify-center items-center">
-              <Chip color="warning" variant="flat" size="lg">
-                ★{moviedata.vote_average.toFixed(1)}
-              </Chip>
-                <h3 className="font-semibold px-3">{moviedata.release_date.substring(0, 4)}</h3>
+              <div className="flex flex-row w-full justify-center items-center max-[600px]:flex-col max-[600px]:mb-1">
+                <div className="flex flex-row justify-center items-center self-center">
+                  <Chip color="warning" variant="flat" size="lg">
+                    ★{moviedata.vote_average.toFixed(1)}
+                  </Chip>
+                  <h3 className="font-semibold px-3">{moviedata.release_date.substring(0, 4)}</h3>
+                </div>
+
                 {moviedata.credits.crew.filter(({job})=> job ==='Director')[0] && 
                   <h3>Directed by <Link className="cursor-pointer" onClick={() => navigate(`/celebrity/${moviedata.credits.crew.filter(({job})=> job ==='Director')[0].id}`)} size="md"><span className="font-semibold">{moviedata.credits.crew.filter(({job})=> job ==='Director')[0].name}</span></Link></h3>
                 }
@@ -70,13 +75,13 @@ function MoviePage(){
 
               {moviedata.tagline ? <h4 className="py-2 font-semibold text-xl text-center">{moviedata.tagline}</h4> : null}
 
-              <p>Runtime: {moviedata.runtime} minutes</p>
+              <p><span className="italic">Runtime:</span> {moviedata.runtime} minutes</p>
 
               <p>{moviedata.overview}</p>
 
               <div className="flex flex-row justify-center py-3 flex-wrap">
                 {moviedata.genres.map((genre) => 
-                  <Chip variant='bordered' key={genre.id} className="mx-1">
+                  <Chip variant='bordered' key={genre.id} className="m-0.5">
                     {genre.name}
                   </Chip>
                 )}
@@ -102,11 +107,11 @@ function MoviePage(){
           <section className="mb-2">
             <h3>Cast</h3>
 
-              <div className="flex flex-row flex-wrap">
+              <div className="flex flex-row flex-wrap max-[600px]:justify-center">
                 {moviedata.credits.cast.filter((item, index) => index < (showall ? 100 : 10)).map((cast) =>
                   <Link href={`/celebrity/${cast.id}`} key={cast.id}>
                     <Tooltip content={cast.character}>
-                      <Chip style={{margin: "2px"}} key={'cast' + cast.id}>{cast.name}</Chip>
+                      <Chip className="m-0.5" key={'cast' + cast.id}>{cast.name}</Chip>
                     </Tooltip>
                   </Link>
                 )}
@@ -118,7 +123,7 @@ function MoviePage(){
           <section className="mb-2">
             <h3>Recommended Movies</h3>
 
-              <div className="flex flex-row overflow-x-scroll container-margin">
+              <div className="flex flex-row overflow-x-scroll container-margin px-4">
                 {moviedata.recommendations.results.map((movie) =>
                   <div 
                     key={'recommended' + movie.id}
@@ -128,21 +133,20 @@ function MoviePage(){
                       key={movie.id}
                       href={`/movie/${movie.id}`}
                     >
-                      <Chip color="warning" variant="shadow" className="absolute z-40 top-0 -left-3">
+                      <Chip color="warning" variant="shadow" className="absolute z-40 top-0.5 -left-1.5">
                         ★{movie.vote_average.toFixed(1)}
                       </Chip>
-                      <div key={movie.id} className="p-5 card-container">
+                      <div key={movie.id} className="p-3 w-[200px] h-full max-[740px]:p-2 max-[740px]:px-0 max-[740px]:w-[170px] max-[600px]:mt-0">
                         <Card isPressable isHoverable>
                           <Image
-                            classNames="m-5 dashboard-movie-img"
                             isBlurred
                             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                             alt={movie.title}
-                            width={170}
-                            style={{ height: "246px"}}
+                            // width={170}
+                            className="w-[170px] h-[246px] max-[740px]:w-[145px] max-[740px]:h-[216px]"
                           />
                         </Card>
-                        <p>{movie.title}</p>
+                        <p className="max-[740px]:w-[145px]">{movie.title}</p>
                       </div>
                     </Link>
                   </div>
