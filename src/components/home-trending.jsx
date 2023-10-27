@@ -3,7 +3,6 @@ import { Card, Image, Skeleton, CardFooter, Link } from '@nextui-org/react';
 function HomeTrending({trendingTitle, trendingInfo}){
   return (
     <section className="flex max-[650px]:w-full">
-      {trendingInfo ?
         <Link 
           href={`/movie/${trendingInfo[0].id}`}
           className="max-[650px]:mb-3 max-[650px]:w-full"
@@ -25,13 +24,6 @@ function HomeTrending({trendingTitle, trendingInfo}){
               </CardFooter>
           </Card>
         </Link>
-          :
-          <Card radius="lg" className="mx-1 flex justify-center justify-self-center">
-            <Skeleton>
-              <div className='example'></div>
-            </Skeleton>
-          </Card>
-      }
     </section>
   )
 }

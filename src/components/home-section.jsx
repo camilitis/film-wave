@@ -1,10 +1,11 @@
-import { Card, Image, Link } from '@nextui-org/react';
+import { Card, Image, Link, Spinner } from '@nextui-org/react';
 
 function HomeSection({moviesData}) {
 
   return (
     <>
-    {moviesData ?
+    {/* {console.log(moviesData)} */}
+    {moviesData && moviesData.results ?
       <div className="flex flex-row overflow-x-scroll container-margin">
         {moviesData.results.map((movie) => (
           <Link 
@@ -25,7 +26,7 @@ function HomeSection({moviesData}) {
           </Link>
         ))}
       </div>
-    : "Loading..."
+    : <Spinner className="m-auto w-full"/>
     }
     </>
   )

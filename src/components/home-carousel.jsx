@@ -14,7 +14,7 @@ function HomeCarousel({trendingTitle, trendingInfo}){
 
   return (
     <section className="flex max-[650px]:w-full">
-      {trendingInfo ?
+      {trendingInfo &&
         <>
           <Link 
             href={`/movie/${trendingInfo[trendingPag].id}`}
@@ -26,7 +26,6 @@ function HomeCarousel({trendingTitle, trendingInfo}){
               className="mx-1 no-select max-[650px]:w-full"
             >
               <Image
-              
                 removeWrapper
                 alt={trendingInfo[trendingPag].original_title}
                 className="z-0 w-full object-cover"
@@ -40,12 +39,6 @@ function HomeCarousel({trendingTitle, trendingInfo}){
           </Link>
           {/* <Pagination total={5} initialPage={trendingPag} onChange={setTrendingPag}/> */}
         </>
-          :
-          <Card radius="lg" className="mx-1 flex justify-center justify-self-center">
-            <Skeleton>
-              <div className='example'></div>
-            </Skeleton>
-          </Card>
       }
     </section>
   )

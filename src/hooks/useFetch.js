@@ -21,6 +21,8 @@ function useFetch(pagenumber, genreid){
     }
   }
 
+  console.log(pagenumber)
+
   useEffect(() => {
     fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
     .then(response => response.json())
@@ -59,7 +61,7 @@ function useFetch(pagenumber, genreid){
         .then(response => settopratedmovies(response))
         .catch(err => console.error(err))
       }else{
-        fetch(`https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${pagenumber}`, options)
+        fetch(`https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${pagenumber === undefined ? 1 : pagenumber}`, options)
         .then(response => response.json())
         .then(response => setupcomingmovies(response))
         .catch(err => console.error(err))

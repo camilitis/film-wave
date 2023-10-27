@@ -5,6 +5,7 @@ import useFetch from '../hooks/useFetch';
 import HomeTrending from '../components/home-trending';
 import HomeCarousel from '../components/home-carousel';
 import HomeSection from '../components/home-section';
+import SpinnerDiv from '../components/spinner';
 
 function HomePage() {
 
@@ -13,15 +14,19 @@ function HomePage() {
   return (
     <>
       <section className="flex flex-row max-[650px]:flex-col max-[650px]:place-items-center">
-        <HomeTrending
-          trendingTitle={'Trending of the day'}
-          trendingInfo={trendingoftheday}
-        />
+        {trendingoftheday && trendingoftheweek ? 
+        <>
+          <HomeTrending
+            trendingTitle={'Trending of the day'}
+            trendingInfo={trendingoftheday}
+          />
 
-        <HomeCarousel
-          trendingTitle={'Trending of the week'}
-          trendingInfo={trendingoftheweek}
-        />
+          <HomeCarousel
+            trendingTitle={'Trending of the week'}
+            trendingInfo={trendingoftheweek}
+          />
+        </>
+        : <SpinnerDiv/>}
       </section>
 
       <section className="py-3">
