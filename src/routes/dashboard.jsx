@@ -57,15 +57,15 @@ function DashboardPage(){
 
   return(
     <>
-      <section className="py-2">
-        <div className="flex flex-row">
-          <h2 className="py-3 uppercase font-semibold w-full">{title}</h2>
+      <section className="py-2 max-[600px]:p-0">
+        <div className="flex flex-row max-[600px]:flex-col">
+          <h2 className="py-3 max-[600px]:p-0 max-[600px]:mb-1 uppercase font-semibold w-full">{title}</h2>
 
           {genreslist && 
-            <div className="flex w-full justify-end">
+            <div className="flex w-full justify-end max-[600px]:mb-4">
               <Select
                 label="Genre" 
-                className="max-w-xs"
+                // className="max-w-xs"
                 aria-label="Genres"
                 size="sm"
                 defaultSelectedKeys="0"
@@ -90,32 +90,31 @@ function DashboardPage(){
         {moviesDashboard && moviesDashboard.length === 0 ? "No movies to show" : null}
 
         {moviesDashboard ? 
-          <div className="py-2 flex flex-row flex-wrap">
+          <div className="py-2 flex flex-row flex-wrap w-full justify-center max-[541px]:w-11/12 max-[541px]:mx-auto">
             {moviesDashboard.map((movie) => (
               <Link 
                 key={movie.id}
                 onClick={() => navigate(`/movie/${movie.id}`)}
+                className="cursor-pointer max-[830px]:w-40 max-[669px]:w-32 max-[541px]:bg-white"
               >
-                <Chip color="warning" variant="shadow" className="absolute z-40 top-0 -left-3">
+                <Chip color="warning" variant="shadow" className="absolute z-40 top-0 -left-1">
                   ★{movie.vote_average.toFixed(1)}
                 </Chip>
-                  <div className="p-2 card-container">
-                    <Card isPressable isHoverable>
+                  <div className="py-2 w-[200px] h-full m-auto">
+                    <Card isPressable isHoverable className="m-auto">
                       <Image
                         src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                         alt={movie.title}
-                        className="m-5"
-                        width={190}
-                        style={{ height: "276px"}}
+                        className="photoclass max-[830px]:w-36 max-[830px]:h-52 max-[669px]:w-24 max-[669px]:h-36"
                         onClick={() => navigate(`/movie/${movie.id}`)}
                       />
                     </Card>
-                    <p>{movie.title}</p>
+                    <p className="text-center">{movie.title}</p>
                   </div>
               </Link>
             ))}
 
-            {moviesDashboard.length === 0 ? null : <Pagination total={totalpages ? totalpages : 1} initialPage={1} page={pagenumber} onChange={setpagenumber} className="flex justify-center w-full py-4 my-1"/>}
+            {moviesDashboard.length === 0 ? null : <Pagination total={totalpages ? totalpages : 1} initialPage={1} page={pagenumber} onChange={setpagenumber} className="flex justify-center py-4 my-1 w-full"/>}
           </div>
         : <SpinnerDiv/> }
       </section>
