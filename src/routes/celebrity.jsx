@@ -91,13 +91,13 @@ function CelebrityPage(){
 
   return(
     <>
-      <div className="movie-grid-header-buttons mb-2">
+      <div className="movie-grid-header-buttons flex space-around justify-around mr-0 ml-auto w-[200px] w-[200px] max-[600px]:hidden">
         <Link>
           <Button
             size="sm"
             variant="bordered"
             color="primary"
-            style={{fontWeight: "600"}}
+            className="font-semibold"
             onPress={() => window.history.back()}
           >
             ← Go back
@@ -105,7 +105,7 @@ function CelebrityPage(){
         </Link>
 
         <Link href='/'>
-          <Button variant="bordered" color="primary" size="sm" style={{fontWeight: "600"}}>
+          <Button variant="bordered" color="primary" size="sm" className="font-semibold">
             Home
           </Button>
         </Link>
@@ -113,7 +113,7 @@ function CelebrityPage(){
 
       <Select
         label="Department"
-        className="max-w-xs py-4"
+        className="w-[310px] py-4 max-[600px]:py-2 max-[600px]:w-full"
         aria-label="Department"
         size="sm"
         selectionMode="single"
@@ -138,21 +138,20 @@ function CelebrityPage(){
 
     {actordata && actordata.actordetails && actordata.moviecredits ? 
       <section className="flex flex-col">
-        <div className="flex flex-row">
-          <article className="flex flex-row flex-wrap h-full" style={{flexBasis: "68%"}}>
+        <div className="flex flex-row max-[751px]:flex-col max-[600px]:justify-center">
+          <article className="flex flex-row flex-wrap h-full max-[1000px]:justify-center" style={{flexBasis: "74%"}}>
             {filtereddata && filtereddata.map((movie) => (
               <Link 
                 key={movie.id}
                 onClick={() => navigate(`/movie/${movie.id}`)}
+                className="p-1"
               >
-                <div className="h-full cursor-pointer" style={{width: "160px", margin: "5px"}}>
+                <div className="h-full cursor-pointer w-[160px]" style={{margin: "5px"}}>
                   <Card isPressable isHoverable>
                     <Image
                       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                       alt={movie.title}
-                      className="m-5"
-                      width={145}
-                      style={{height: "215px"}}
+                      className="celebrity h-54 max-[930px]:w-40 max-[930px]:h-54 max-[600px]:w-38 max-[600px]:h-30"
                       onClick={() => navigate(`/movie/${movie.id}`)}
                     />
                   </Card>
@@ -163,10 +162,10 @@ function CelebrityPage(){
             ))}
           </article>
 
-          <article className="flex flex-col px-6 mb-2" style={{flexBasis: "30%"}}>
-            <Image src={`https://image.tmdb.org/t/p/w200/${actordata.actordetails.profile_path}`} alt={actordata.actordetails.name} width={300} height={300} className="mb-2"/>
+          <article className="flex flex-col px-2" style={{flexBasis: "26%"}}>
+            <Image src={`https://image.tmdb.org/t/p/w200/${actordata.actordetails.profile_path}`} alt={actordata.actordetails.name} className="mb-2 w-[230px]"/>
             <div>
-              <h3 style={{marginBottom: "13px", fontWeight: "bold"}}>
+              <h3 className="font-bold" style={{marginBottom: "13px"}}>
                 {actordata.actordetails.name}
               </h3>
               <p>

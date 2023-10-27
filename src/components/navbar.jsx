@@ -19,6 +19,7 @@ function NavBar({search, setsearch}) {
           value={search}
           isClearable
           radius="lg"
+          className="text-base"
           onChange={(e) => setsearch(e.target.value)}
           onKeyDown={(e) => {
             if(e.key === 'Enter') {

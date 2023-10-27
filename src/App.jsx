@@ -16,7 +16,7 @@ function App() {
   return (
     <NextUIProvider>
       <NextThemesProvider attribute="class" defaultTheme="dark">
-        <div className="App">
+        <div className="App m-auto">
           <NavBar search={search} setsearch={setsearch}/>
 
           <hr className="mb-4"/>

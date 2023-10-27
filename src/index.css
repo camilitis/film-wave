@@ -16,16 +16,8 @@
 @tailwind utilities;
 
 .App{
-  margin: auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
-
-.no-select{
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
 
 .glow-text-shadow{
   color: white;
@@ -45,6 +37,11 @@
 .photoclass{
   width: 180px;
   height: 270px;
+}
+
+.celebrity{
+  width: 160px;
+  height: 235px;
 }
 
 @media only screen and (min-width: 1000px){
