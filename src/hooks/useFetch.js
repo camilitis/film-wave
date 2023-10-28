@@ -21,8 +21,6 @@ function useFetch(pagenumber, genreid){
     }
   }
 
-  console.log(pagenumber)
-
   useEffect(() => {
     fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
     .then(response => response.json())
@@ -66,17 +64,17 @@ function useFetch(pagenumber, genreid){
         .then(response => setupcomingmovies(response))
         .catch(err => console.error(err))
 
-        fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${pagenumber}`, options)
+        fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${pagenumber === undefined ? 1 : pagenumber}`, options)
         .then(response => response.json())
         .then(response => setnowshowingmovies(response))
         .catch(err => console.error(err))
 
-        fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${pagenumber}`, options)
+        fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${pagenumber === undefined ? 1 : pagenumber}`, options)
         .then(response => response.json())
         .then(response => setpopularmovies(response))
         .catch(err => console.error(err))
 
-        fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&${pagenumber}`, options)
+        fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${pagenumber === undefined ? 1 : pagenumber}`, options)
         .then(response => response.json())
         .then(response => settopratedmovies(response))
         .catch(err => console.error(err))
